@@ -1,8 +1,8 @@
 package com.BankSupervielle.Persons.service;
 
-import com.cityBank.persons.model.Person;
-import com.cityBank.persons.repository.PersonRepository;
-import com.cityBank.persons.service.impl.ViewPersonImpl;
+import com.citybank.persons.model.Person;
+import com.citybank.persons.repository.jpa.JpaPersonRepository;
+import com.citybank.persons.service.impl.ViewPersonImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,7 +26,7 @@ public class ViewPersonImplTest {
     @InjectMocks
     private ViewPersonImpl service;
     @Mock
-    private PersonRepository repository;
+    private JpaPersonRepository repository;
 
     @Test
     void givenRequestWhenExecuteThenIsOK() {

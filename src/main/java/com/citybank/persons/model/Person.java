@@ -1,4 +1,4 @@
-package com.cityBank.persons.model;
+package com.citybank.persons.model;
 
 import lombok.*;
 

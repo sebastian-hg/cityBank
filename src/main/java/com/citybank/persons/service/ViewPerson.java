@@ -1,6 +1,6 @@
-package com.cityBank.persons.service;
+package com.citybank.persons.service;
 
-import com.cityBank.persons.model.Person;
+import com.citybank.persons.model.Person;
 import reactor.core.publisher.Mono;
 
 public interface ViewPerson {
