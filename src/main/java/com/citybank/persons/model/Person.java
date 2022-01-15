@@ -2,8 +2,7 @@ package com.citybank.persons.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,12 +14,20 @@ import javax.persistence.Id;
 @Entity
 public class Person {
     @Id
-    private Long documentNational;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Builder.Default
+    private Long documentNational = 0L;
     private String typeDocument;
     private String country;
     private String gender;
     private Integer age;
     private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "direction_id")
+    private Direction direction;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
 
 }

@@ -22,14 +22,14 @@ public class ReactivePersonRepositoryImpl implements ReactivePersonRepository {
     public Mono<Person> updatePerson(Person newPerson) {
         var searchPerson = jpaPersonRepository.findById(newPerson.getDocumentNational());
         return (searchPerson.isPresent())
-                ? Mono.just(
+                ? Mono.just(jpaPersonRepository.save(
                 Person.builder()
                         .age(newPerson.getAge())
                         .country(newPerson.getCountry())
                         .gender(newPerson.getGender())
                         .typeDocument(newPerson.getTypeDocument())
                         .name(newPerson.getName())
-                        .build())
+                        .build()))
                 : Mono.empty();
     }
 
@@ -38,13 +38,15 @@ public class ReactivePersonRepositoryImpl implements ReactivePersonRepository {
         var newPerson = jpaPersonRepository.findById(person.getDocumentNational());
         return (newPerson.isPresent())
                 ? Mono.empty()
-                : Mono.just(Person.builder()
-                .documentNational(person.getDocumentNational())
-                .age(person.getAge())
-                .country(person.getCountry())
-                .gender(person.getGender())
-                .name(person.getName())
-                .build());
+                : Mono.just(jpaPersonRepository.save(Person.builder()
+                        .documentNational(person.getDocumentNational())
+                        .age(person.getAge())
+                        .country(person.getCountry())
+                        .gender(person.getGender())
+                        .name(person.getName())
+                        .direction(person.getDirection())
+                        .contact(person.getContact())
+                        .build()));
     }
 
     @Override

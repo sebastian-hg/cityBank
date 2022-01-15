@@ -1,0 +1,18 @@
+spring:
+  debug: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rrhh
+    username: rrhh
+    password: admin
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+server:
+  port: 8086
