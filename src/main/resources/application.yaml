@@ -1,0 +1,23 @@
+server:
+  port: 8082
+postgres:
+  host: 127.0.0.1
+  port: 5432
+  database: rrhh
+  schema: public
+  username: rrhh
+  password: admin
+management:
+  security:
+    enabled: false
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "health"

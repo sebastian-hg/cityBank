@@ -11,10 +11,12 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Table
-public class Contact {
+public class Address {
 
     private Long id;
-    private String mail;
-    private Integer numberCall;
+    private String street;
+    private String country;
+    private String city;
+    private Integer postalCode;
     private Long personId;
 }

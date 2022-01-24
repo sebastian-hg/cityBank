@@ -1,9 +1,8 @@
 package com.citybank.persons.model;
 
 import lombok.*;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.relational.core.mapping.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,15 +11,19 @@ import javax.persistence.Id;
 @Builder
 @Getter
 @Setter
-@Entity
+@Table
 public class Person {
-    @Id
+
+    private Long id;
     private Long documentNational;
     private String typeDocument;
-    private String country;
     private String gender;
     private Integer age;
     private String name;
+    @Transient
+    private Address address;
+    @Transient
+    private Contact contact;
 
 
 }
