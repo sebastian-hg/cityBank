@@ -20,27 +20,16 @@ public class DeletePersonRequestServiceImpl implements DeletePersonRequestServic
     @Override
     public Mono<Boolean> execute(Long id) {
         return personRepository.findById(id)
-                .flatMap(person -> contactRepository.findByPerson(person.getId())
-                        .map(contact -> {
-                            contactRepository.delete(contact);
-                            return person;
-                        }
+                .flatMap(person -> contactRepository.findByPersonId(person.getId())
+                        .flatMap(contact -> contactRepository.delete(contact).thenReturn(person)
                         )
                 )
-                .flatMap(person -> addressRepository.findByPerson(person.getId())
-                        .map(address -> {
-                            addressRepository.delete(address);
-                            return person;
-                        })
+                .flatMap(person -> addressRepository.findByPersonId(person.getId())
+                        .flatMap(address -> addressRepository.delete(address).thenReturn(person)
+                        )
                 )
-                .map(person -> {
-                            personRepository.delete(person);
-                            return Boolean.TRUE;
-                        }
-                )
+                .flatMap(person -> personRepository.delete(person).thenReturn(Boolean.TRUE))
                 .switchIfEmpty(Mono.just(Boolean.FALSE));
-
-
     }
 }
 

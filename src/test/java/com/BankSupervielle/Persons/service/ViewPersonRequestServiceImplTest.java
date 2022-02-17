@@ -72,8 +72,8 @@ public class ViewPersonRequestServiceImplTest {
     private void givenRepository() {
 
         Mockito.when(personRepository.findById(idRequest)).thenReturn(Mono.just(expected));
-        Mockito.when(addressRepository.findByPerson(idRequest)).thenReturn(Mono.just(expected.getAddress()));
-        Mockito.when(contactRepository.findByPerson(idRequest)).thenReturn(Mono.just(expected.getContact()));
+        Mockito.when(addressRepository.findByPersonId(idRequest)).thenReturn(Mono.just(expected.getAddress()));
+        Mockito.when(contactRepository.findByPersonId(idRequest)).thenReturn(Mono.just(expected.getContact()));
     }
 
     private void whenExecute() {
@@ -91,8 +91,8 @@ public class ViewPersonRequestServiceImplTest {
                 .expectComplete()
                 .verify();
         Mockito.verify(personRepository).findById(idRequest);
-        Mockito.verify(contactRepository).findByPerson(idRequest);
-        Mockito.verify(addressRepository).findByPerson(idRequest);
+        Mockito.verify(contactRepository).findByPersonId(idRequest);
+        Mockito.verify(addressRepository).findByPersonId(idRequest);
     }
 
     @Test
@@ -119,8 +119,8 @@ public class ViewPersonRequestServiceImplTest {
 
     private void givenRepositoryWithItemAddressNull() {
         Mockito.when(personRepository.findById(idRequest)).thenReturn(Mono.just(expected));
-        Mockito.when(addressRepository.findByPerson(idRequest)).thenReturn(Mono.empty());
-        Mockito.when(contactRepository.findByPerson(idRequest)).thenReturn(Mono.just(expected.getContact()));
+        Mockito.when(addressRepository.findByPersonId(idRequest)).thenReturn(Mono.empty());
+        Mockito.when(contactRepository.findByPersonId(idRequest)).thenReturn(Mono.just(expected.getContact()));
     }
 
     private void whenExecuteWithItemAddressNull() {
@@ -133,8 +133,8 @@ public class ViewPersonRequestServiceImplTest {
                 .expectComplete()
                 .verify();
         Mockito.verify(personRepository).findById(idRequest);
-        Mockito.verify(addressRepository).findByPerson(idRequest);
-        Mockito.verify(contactRepository).findByPerson(idRequest);
+        Mockito.verify(addressRepository).findByPersonId(idRequest);
+        Mockito.verify(contactRepository).findByPersonId(idRequest);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class ViewPersonRequestServiceImplTest {
 
     private void givenRepositoryWithContactNull() {
         Mockito.when(personRepository.findById(idRequest)).thenReturn(Mono.just(expected));
-        Mockito.when(addressRepository.findByPerson(expected.getId())).thenReturn(Mono.just(expected.getAddress()));
-        Mockito.when(contactRepository.findByPerson(expected.getId())).thenReturn(Mono.empty());
+        Mockito.when(addressRepository.findByPersonId(expected.getId())).thenReturn(Mono.just(expected.getAddress()));
+        Mockito.when(contactRepository.findByPersonId(expected.getId())).thenReturn(Mono.empty());
     }
 
     private void whenExecuteWithContactNull() {
@@ -176,8 +176,8 @@ public class ViewPersonRequestServiceImplTest {
                 .expectComplete()
                 .verify();
         Mockito.verify(personRepository).findById(idRequest);
-        Mockito.verify(addressRepository).findByPerson(idRequest);
-        Mockito.verify(contactRepository).findByPerson(idRequest);
+        Mockito.verify(addressRepository).findByPersonId(idRequest);
+        Mockito.verify(contactRepository).findByPersonId(idRequest);
     }
 
     @Test

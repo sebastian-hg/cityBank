@@ -64,9 +64,9 @@ public class DeletePersonRequestServiceImplTest {
                         .build())
                 .build();
         Mockito.when(personRepository.findById(idRequest)).thenReturn(Mono.just(responseRepository));
-        Mockito.when(contactRepository.findByPerson(idRequest)).thenReturn(Mono.just(responseRepository.getContact()));
+        Mockito.when(contactRepository.findByPersonId(idRequest)).thenReturn(Mono.just(responseRepository.getContact()));
         Mockito.when(contactRepository.delete(any(Contact.class))).thenReturn(Mono.empty().then());
-        Mockito.when(addressRepository.findByPerson(idRequest)).thenReturn(Mono.just(responseRepository.getAddress()));
+        Mockito.when(addressRepository.findByPersonId(idRequest)).thenReturn(Mono.just(responseRepository.getAddress()));
         Mockito.when(addressRepository.delete(any(Address.class))).thenReturn(Mono.empty().then());
         Mockito.when(personRepository.delete(any(Person.class))).thenReturn(Mono.empty().then());
     }
@@ -81,9 +81,9 @@ public class DeletePersonRequestServiceImplTest {
                 .expectComplete()
                 .verify();
         Mockito.verify(personRepository).findById(idRequest);
-        Mockito.verify(contactRepository).findByPerson(idRequest);
+        Mockito.verify(contactRepository).findByPersonId(idRequest);
         Mockito.verify(contactRepository).delete(any(Contact.class));
-        Mockito.verify(addressRepository).findByPerson(idRequest);
+        Mockito.verify(addressRepository).findByPersonId(idRequest);
         Mockito.verify(addressRepository).delete(any(Address.class));
         Mockito.verify(personRepository).delete(any(Person.class));
     }

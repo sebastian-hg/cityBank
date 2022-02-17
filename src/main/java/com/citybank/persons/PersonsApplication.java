@@ -11,16 +11,14 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 @EnableR2dbcRepositories
 @SpringBootApplication(exclude = {
-		R2dbcAutoConfiguration.class,
-		R2dbcTransactionManagerAutoConfiguration.class,
-		R2dbcRepositoriesAutoConfiguration.class,
-		SqlInitializationAutoConfiguration.class})
-@ConfigurationPropertiesScan(basePackages = {
-		"com.citybank.persons.configuration"})
+        R2dbcAutoConfiguration.class,
+        R2dbcTransactionManagerAutoConfiguration.class,
+        R2dbcRepositoriesAutoConfiguration.class,
+        SqlInitializationAutoConfiguration.class})
+@ConfigurationPropertiesScan(basePackages = {"com.citybank.persons.configuration"})
 public class PersonsApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(PersonsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PersonsApplication.class, args);
+    }
 
 }

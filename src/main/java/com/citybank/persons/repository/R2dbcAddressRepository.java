@@ -5,5 +5,5 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
 public interface R2dbcAddressRepository extends ReactiveCrudRepository<Address,Long> {
-    Mono<Address> findByPerson(Long id);
+    Mono<Address> findByPersonId(Long id);
 }

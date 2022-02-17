@@ -23,7 +23,7 @@ public class ViewPersonRequestServiceImpl implements ViewPersonRequestService {
     @Override
     public Mono<Person> execute(Long id) {
         return personRepository.findById(id)
-                .flatMap(person -> addressRepository.findByPerson(person.getId())
+                .flatMap(person -> addressRepository.findByPersonId(person.getId())
                         .map(
                                 address -> {
                                     person.setAddress(address);
@@ -32,7 +32,7 @@ public class ViewPersonRequestServiceImpl implements ViewPersonRequestService {
                         )
                         .switchIfEmpty(Mono.just(person))
                 )
-                .flatMap(person -> contactRepository.findByPerson(person.getId())
+                .flatMap(person -> contactRepository.findByPersonId(person.getId())
                         .map(
                                 contact -> {
                                     person.setContact(contact);

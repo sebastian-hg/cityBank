@@ -1,6 +1,7 @@
 package com.citybank.persons.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @AllArgsConstructor
@@ -13,6 +14,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table
 public class Address {
 
+    @Id
     private Long id;
     private String street;
     private String country;

@@ -1,9 +1,9 @@
 package com.citybank.persons.service.impl;
 
+import com.citybank.persons.exception.PersonNoExistException;
 import com.citybank.persons.model.Person;
-import com.citybank.persons.repository.R2dbcAddressRepository;
-import com.citybank.persons.repository.R2dbcContactRepository;
 import com.citybank.persons.repository.R2dbcPersonRepository;
+import com.citybank.persons.service.SaveAddressAndContactService;
 import com.citybank.persons.service.UpdatePersonRequestService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,24 +16,17 @@ import reactor.core.publisher.Mono;
 public class UpdatePersonRequestServiceImpl implements UpdatePersonRequestService {
 
     private final R2dbcPersonRepository personRepository;
-    private final R2dbcAddressRepository addressRepository;
-    private final R2dbcContactRepository contactRepository;
+    private final SaveAddressAndContactService saveAddressAndContact;
 
     @Override
     public Mono<Person> execute(Person updatePerson) {
-        return personRepository.save(updatePerson)
-                .map(person -> {
-                    var address = person.getAddress();
-                    address.setPersonId(person.getId());
-                    addressRepository.save(address);
-                    return person;
-                })
-                .map(person -> {
-                    var contact = person.getContact();
-                    contact.setPersonId(person.getId());
-                    contactRepository.save(contact);
-                    return person;
-                });
+        return personRepository.existsById(updatePerson.getId())
+                .filter(Boolean.TRUE::equals)
+                .switchIfEmpty(Mono.error(PersonNoExistException::new))
+                .flatMap(aBoolean -> personRepository.save(updatePerson))
+                .flatMap(saveAddressAndContact::execute);
     }
 }
+
+
 

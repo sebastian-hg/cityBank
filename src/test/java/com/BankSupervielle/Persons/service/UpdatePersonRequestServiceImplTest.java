@@ -28,6 +28,7 @@ public class UpdatePersonRequestServiceImplTest {
     @InjectMocks
     private UpdatePersonRequestServiceImpl service;
 
+    private Person oldPerson;
     private Person personRequest;
     private Person expected;
     private Mono<Person> response;
@@ -81,13 +82,26 @@ public class UpdatePersonRequestServiceImplTest {
     }
 
     private void givenRepository() {
+        oldPerson = Person.builder()
+                .id(1L)
+                .name("mario Casa")
+                .address(Address.builder()
+                        .personId(1L)
+                        .country("venezuela")
+                        .build())
+                .contact(Contact.builder()
+                        .personId(1L)
+                        .numberCall(1127620035)
+                        .build())
+                .build();
+        Mockito.when(personRepository.findById(personRequest.getId())).thenReturn(Mono.just(oldPerson));
         Mockito.when(personRepository.save(personRequest)).thenReturn(Mono.just(personRequest));
         Mockito.when(addressRepository.save(personRequest.getAddress())).thenReturn(Mono.just(personRequest.getAddress()));
         Mockito.when(contactRepository.save(personRequest.getContact())).thenReturn(Mono.just(personRequest.getContact()));
     }
 
     private void whenExecute() {
-        response= service.execute(personRequest);
+        response = service.execute(personRequest);
     }
 
     private void thenUpdateIsOk() {
@@ -95,6 +109,7 @@ public class UpdatePersonRequestServiceImplTest {
                 .expectNextMatches(person -> person.equals(expected))
                 .expectComplete()
                 .verify();
+        Mockito.verify(personRepository).findById(personRequest.getId());
         Mockito.verify(personRepository).save(personRequest);
         Mockito.verify(addressRepository).save(personRequest.getAddress());
         Mockito.verify(contactRepository).save(personRequest.getContact());

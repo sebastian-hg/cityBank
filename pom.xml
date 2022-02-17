@@ -15,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <mapstruct.version>1.4.2final</mapstruct.version>
     </properties>
     <dependencies>
         <dependency>
@@ -44,8 +45,6 @@
             <artifactId>mapstruct</artifactId>
             <version>1.4.2.Final</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -81,5 +80,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
