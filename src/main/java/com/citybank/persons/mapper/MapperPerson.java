@@ -7,11 +7,12 @@ import org.mapstruct.Mapping;
 
 
 @Mapper(componentModel = "spring")
-
 public interface MapperPerson {
 
-
-    @Mapping(source = "address", target = "country")
+//    @Mapping({
+//            @Mapping(source = "address", target = "country"),
+//            @Mapping(source = "dni", target = "documentNational")}
+//    )
     PersonDto personDto(Person person);
 
     Person person(PersonDto personDto);
