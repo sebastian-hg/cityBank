@@ -26,7 +26,7 @@ public class ViewPersonByIdHandler {
         log.info("id request is {}", id);
         return service.execute(id)
                 .flatMap(person -> {
-                    return responseHelper.buildOK(Mono.just(person));
+                    return responseHelper.buildOK(Mono.just(mapperPerson.personDto(person)));
                 });
     }
 
