@@ -1,14 +1,14 @@
 package com.citybank.persons.mapper;
 
 import com.citybank.persons.model.Address;
-import com.citybank.persons.model.dto.response.AddressDto;
+import com.citybank.persons.model.dto.response.AddressDtoResponse;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface MapperAddress {
 
-    Address toAddress(AddressDto addressDto);
+    Address toAddress(AddressDtoResponse addressDto);
 
-    AddressDto toAddressDto(Address address);
+    AddressDtoResponse toAddressDto(Address address);
 
 }

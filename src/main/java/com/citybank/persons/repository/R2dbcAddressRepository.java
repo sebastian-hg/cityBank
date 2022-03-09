@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface R2dbcAddressRepository extends ReactiveCrudRepository<Address,Long> {
     Mono<Address> findByPersonId(Long id);
+    Mono<Void> deleteByPersonId(Long id);
 }

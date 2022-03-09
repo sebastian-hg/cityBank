@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @Log4j2
 @Component
 @AllArgsConstructor
-public class ViewPersonByIdHandler {
+public class ViewPersonByIdHandler{
 
     private final ResponseHelper responseHelper;
     private final ViewPersonRequestService service;
@@ -26,9 +26,8 @@ public class ViewPersonByIdHandler {
         log.info("id request is {}", id);
         return service.execute(id)
                 .flatMap(person -> {
-                    return responseHelper.buildOK(Mono.just(mapperPerson.personDto(person)));
+                    return responseHelper.buildOK(Mono.just(mapperPerson.toPersonDtoResponse(person)));
                 });
     }
-
 
 }

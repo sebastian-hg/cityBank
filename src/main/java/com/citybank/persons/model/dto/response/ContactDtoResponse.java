@@ -1,19 +1,16 @@
 package com.citybank.persons.model.dto.response;
 
 import com.citybank.persons.helper.IResponseSuccess;
-import com.citybank.persons.model.Address;
 import lombok.*;
 
-@AllArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
 @Getter
+@ToString
 @Setter
 @Builder
-public class PersonDto implements IResponseSuccess {
-    String name;
-    Integer age;
-    Long dni;
-    Address country;
+public class ContactDtoResponse implements IResponseSuccess {
     String mail;
     Integer numberCall;
+
 }

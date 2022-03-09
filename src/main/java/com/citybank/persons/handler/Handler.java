@@ -1,5 +1,6 @@
 package com.citybank.persons.handler;
 
+import com.citybank.persons.exception.RequestRestrictionException;
 import com.citybank.persons.helper.ResponseHelper;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -49,14 +50,15 @@ public abstract class Handler<T, U extends Validator> {
     private Mono<ServerResponse> validateBodyAndExecute(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(validationClass)
                 .flatMap(body -> {
-                    Errors errors = new BeanPropertyBindingResult(body, validationClass.getName());
+                    var errors = new BeanPropertyBindingResult(body, validationClass.getName());
                     validator.validate(body, errors);
                     if (errors.getAllErrors().isEmpty()) {
                         return execute(Mono.just(body), serverRequest);
                     } else {
-                        //       log.debug("Found errors {} ...", errors);
+                        log.debug("Found errors {} ...", errors);
                         //return Mono.error(new RequestNotValidException(errors));
-                        return Mono.error(new Exception());
+                        return Mono.error(new RequestRestrictionException("these fields do not meet the restrictions"
+                        + errors));
                     }
                 })
                 // .switchIfEmpty(Mono.error(new BadRequestException()));

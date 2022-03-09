@@ -6,6 +6,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -21,6 +24,7 @@ public class Person  implements IResponseSuccess {
     private Long documentNational;
     private String typeDocument;
     private String gender;
+    @NotNull(message = "can not be null")
     private Integer age;
     private String name;
     @Transient

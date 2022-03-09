@@ -1,8 +1,6 @@
 package com.citybank.persons.service.impl;
 
 import com.citybank.persons.model.Person;
-import com.citybank.persons.repository.R2dbcAddressRepository;
-import com.citybank.persons.repository.R2dbcContactRepository;
 import com.citybank.persons.repository.R2dbcPersonRepository;
 import com.citybank.persons.service.CreatePersonRequestService;
 import com.citybank.persons.service.SaveAddressAndContactService;

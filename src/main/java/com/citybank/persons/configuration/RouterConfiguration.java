@@ -18,7 +18,7 @@ public class RouterConfiguration {
     public RouterFunction<ServerResponse> routeRequest(ViewPersonByIdHandler viewPersonByIdHandler, CreatePersonRequestHandler createPersonRequestHandler,
                                                        DeletePersonRequestHandler deletePersonRequestHandler, UpdatePersonRequestHandler updatePersonRequestHandler) {
         return route(RequestPredicates.GET("cityBank/person"), viewPersonByIdHandler::executeWithoutBodyValidation)
-                .and(route(RequestPredicates.POST("cityBank/person/create"), createPersonRequestHandler::executeWithBodyValidation))
+                .and(route(RequestPredicates.POST("cityBank/person/create"), createPersonRequestHandler::execute))
                 .and(route(RequestPredicates.DELETE("cityBank/person/delete"), deletePersonRequestHandler::executeWithoutBodyValidation))
                 .and(route(RequestPredicates.PUT("cityBank/person/update"), updatePersonRequestHandler::executeWithBodyValidation))
                 ;

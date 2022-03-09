@@ -3,13 +3,14 @@ package com.citybank.persons.model.dto.response;
 import com.citybank.persons.helper.IResponseSuccess;
 import lombok.*;
 
-@EqualsAndHashCode
 @AllArgsConstructor
+@EqualsAndHashCode
+@Builder
+@ToString
 @Getter
 @Setter
-@Builder
-public class ContactDto implements IResponseSuccess {
-    String mail;
-    Integer numberCall;
+public class AddressDtoResponse implements IResponseSuccess {
+    String city;
+    String street;
 
 }
