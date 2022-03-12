@@ -1,6 +1,6 @@
 package com.BankSupervielle.Persons.service;
 
-import com.citybank.persons.exception.PersonNoExistException;
+import com.citybank.persons.exception.api.PersonNoExistException;
 import com.citybank.persons.model.Address;
 import com.citybank.persons.model.Contact;
 import com.citybank.persons.model.Person;

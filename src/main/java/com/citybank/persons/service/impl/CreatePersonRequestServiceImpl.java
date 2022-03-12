@@ -20,6 +20,7 @@ public class CreatePersonRequestServiceImpl implements CreatePersonRequestServic
 
     @Override
     public Mono<Person> execute(Person person) {
+        log.info("person to save in the database{}", person);
         return personRepository.save(person)
                 .flatMap(saveAddressAndContact::execute);
     }

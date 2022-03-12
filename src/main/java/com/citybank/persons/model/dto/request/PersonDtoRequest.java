@@ -1,9 +1,6 @@
 package com.citybank.persons.model.dto.request;
 
-import com.citybank.persons.model.Address;
-import com.citybank.persons.model.Contact;
 import lombok.*;
-import org.springframework.data.annotation.Transient;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -17,7 +14,7 @@ import javax.validation.constraints.Size;
 @Setter
 public class PersonDtoRequest {
     private Long id;
-    @Size(min = 7, max = 8)
+    @NotNull(message = "the document is necessary")
     private Long documentNational;
     private String typeDocument;
     private String gender;

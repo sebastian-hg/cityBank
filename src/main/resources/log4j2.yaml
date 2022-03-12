@@ -1,0 +1,28 @@
+Configuration:
+  status: warn
+  appenders:
+    Console:
+      name: LogToConsole
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss.SSS} %highlight{%-5level} [ %-20t] %style{%logger{36}}{bright,blue} - %msg%n"
+  Loggers:
+    logger:
+      - name: com.citybank.persons
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: LogToConsole
+      - name: org.springframework
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: LogToConsole
+      - name: reactor.netty.http.client
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: LogToConsole
+    Root:
+      level: error
+      AppenderRef:
+        ref: LogToConsole

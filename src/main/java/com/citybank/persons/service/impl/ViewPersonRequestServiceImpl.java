@@ -1,6 +1,6 @@
 package com.citybank.persons.service.impl;
 
-import com.citybank.persons.exception.PersonNoExistException;
+import com.citybank.persons.exception.api.PersonNoExistException;
 import com.citybank.persons.model.Person;
 import com.citybank.persons.repository.R2dbcAddressRepository;
 import com.citybank.persons.repository.R2dbcContactRepository;
@@ -22,6 +22,7 @@ public class ViewPersonRequestServiceImpl implements ViewPersonRequestService {
 
     @Override
     public Mono<Person> execute(Long id) {
+        log.info("view person by id{}", id);
         return personRepository.findById(id)
                 .flatMap(person -> addressRepository.findByPersonId(person.getId())
                         .map(

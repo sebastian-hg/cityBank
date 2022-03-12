@@ -1,6 +1,6 @@
 package com.citybank.persons.service.impl;
 
-import com.citybank.persons.exception.PersonNoExistException;
+import com.citybank.persons.exception.api.PersonNoExistException;
 import com.citybank.persons.model.Person;
 import com.citybank.persons.repository.R2dbcPersonRepository;
 import com.citybank.persons.service.SaveAddressAndContactService;

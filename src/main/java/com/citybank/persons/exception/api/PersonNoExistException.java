@@ -1,4 +1,4 @@
-package com.citybank.persons.exception;
+package com.citybank.persons.exception.api;
 
 
 import org.springframework.http.HttpStatus;

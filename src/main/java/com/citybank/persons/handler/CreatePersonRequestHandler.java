@@ -1,6 +1,6 @@
 package com.citybank.persons.handler;
 
-import com.citybank.persons.exception.RequestRestrictionException;
+import com.citybank.persons.exception.api.RequestRestrictionException;
 import com.citybank.persons.helper.ResponseHelper;
 import com.citybank.persons.mapper.MapperPerson;
 import com.citybank.persons.model.dto.request.PersonDtoRequest;
@@ -32,6 +32,7 @@ public class CreatePersonRequestHandler {
     }
 
     private Mono<ServerResponse> validateBodyAndExecute(ServerRequest serverRequest) {
+        log.info("proceed to validate data to person{}",serverRequest.methodName());
         return serverRequest.bodyToMono(PersonDtoRequest.class)
                 .flatMap(body -> {
                     Errors errors = new BeanPropertyBindingResult(body, "PersonDtoRequest");
@@ -39,7 +40,7 @@ public class CreatePersonRequestHandler {
                     if (errors.getAllErrors().isEmpty()) {
                         return executeRuleBusiness(Mono.just(body));
                     } else {
-                        log.debug("Found errors {} ...", errors);
+                        log.error("Found errors errrrrroooooorrrrrrrr{} ...", errors);
                         return Mono.error(new RequestRestrictionException("these fields do not meet the restrictions"
                                 + errors));
                     }
@@ -48,6 +49,7 @@ public class CreatePersonRequestHandler {
     }
 
     private Mono<ServerResponse> executeRuleBusiness(Mono<PersonDtoRequest> personDtoResponse) {
+        log.info("execute rule of business");
         return personDtoResponse.map(mapperPerson::toPerson)
                 .flatMap(service::execute)
                 .flatMap(person -> {

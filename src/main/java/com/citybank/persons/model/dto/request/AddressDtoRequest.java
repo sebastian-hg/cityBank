@@ -6,18 +6,13 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@EqualsAndHashCode
-@Builder
-@ToString
-@Getter
-@Setter
+@Data
 public class AddressDtoRequest {
     private Long id;
     @NotNull
     private String street;
     @NotNull
     private String country;
-
     private String city;
     private Integer postalCode;
     private Long personId;

@@ -12,12 +12,8 @@ import javax.validation.constraints.*;
 @Setter
 public class ContactDtoRequest {
     private Long id;
-    @NotNull
-    @Email
     private String mail;
-    @NotBlank
-    @Min(1100000000)
-    @Max(1199999999)
+    @NotNull
     private Integer numberCall;
     private Long personId;
 }

@@ -1,13 +1,12 @@
 package com.citybank.persons.handler;
 
-import com.citybank.persons.exception.RequestRestrictionException;
+import com.citybank.persons.exception.api.RequestRestrictionException;
 import com.citybank.persons.helper.ResponseHelper;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
